@@ -10,7 +10,26 @@ public class CharComparison {
      * @param b an array of char.
      * @return -1 if A is less than B, 1 if A is greater than B, and 0 if the two arrays are identical.
      */
-    public int compare(char[] a, char[] b){
-        return 0;
+    public int compare(char[] a, char[] b) {
+        int minLength = Math.min(a.length, b.length);
+
+        for (int i = 0; i < minLength; i++) {
+            if (a[i] < b[i]) {
+                return -1; // A is less than B
+            } else if (a[i] > b[i]) {
+                return 1; // A is greater than B
+            }
+            // Characters are equal, continue comparing
+        }
+
+        // If we reached this point, the common part of both arrays is identical
+        // Now, check the length to determine the result
+        if (a.length < b.length) {
+            return -1; // A is a prefix of B
+        } else if (a.length > b.length) {
+            return 1; // B is a prefix of A
+        } else {
+            return 0; // Arrays are identical
+        }
     }
 }
